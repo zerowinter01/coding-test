@@ -20,23 +20,16 @@ class Solution
             
             // 가로 합 구하기 
             int row = 0;
-            
-            for(int i = 0; i<100; i++){
-            	int temp = 0;
-            	for(int j = 0; j<100; j++){
-                	temp += arr[i][j];
-                }
-            	if(temp > row) row = temp;
-            }
-            
-            // 세로 합 구하기 
             int col = 0;
             for(int i = 0; i<100; i++){
-            	int temp = 0;
+            	int rtemp = 0;
+                int ctemp = 0;
             	for(int j = 0; j<100; j++){
-            		temp += arr[j][i];
+                	rtemp += arr[i][j];
+                    ctemp += arr[j][i];
                 }
-            	if(temp > row) row = temp;
+            	if(rtemp > row) row = rtemp;
+                if(ctemp > col) col = ctemp;
             }
             
             // 대각선 합 구하기 
@@ -45,11 +38,8 @@ class Solution
             
             for(int i = 0; i<100; i++){
             	down += arr[i][i];
-            }
-            for(int i = 99; i>=0; i--){
-            	up += arr[i][i];
-            }
-            
+      			up += arr[99-i][99-i];
+            }            
             
             int result = Math.max(col, Math.max(row, Math.max(up, down)));
             
